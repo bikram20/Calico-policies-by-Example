@@ -1,0 +1,17 @@
+---
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: allow-out-443-from-master-hep
+spec:
+  order: 35
+  selector: tigera.io/type == "master"
+  types:
+  - Egress
+  egress:
+    - action: Allow
+      protocol: TCP
+      destination:
+        ports:
+        - 443
+

@@ -1,0 +1,17 @@
+---
+apiVersion: projectcalico.org/v3
+kind: GlobalNetworkPolicy
+metadata:
+  name: donottrackforport7777
+spec:
+  selector: tigera.io/type == "master"
+  doNotTrack: true
+  applyOnForward: true
+  types:
+  - Ingress
+  ingress:
+  - action: Allow
+    protocol: TCP
+    destination:
+      ports: [7777]
+---
